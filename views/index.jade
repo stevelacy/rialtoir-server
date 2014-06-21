@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title GCM
+    include ./head
+  body
+    .spacer-100
+    if user
+      include ./user
+      include ./devices
+    else
+      include ./login

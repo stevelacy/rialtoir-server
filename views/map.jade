@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Simple Map
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBMa6HKX8xO59BtDopnGP29LVKQWOJNlfk')
+    include ./head
+    script(type="text/javascript" src="/js/map.js")
+    
+    style.
+      html, body, #map-canvas {
+      height: 100%;
+      margin: 0px;
+      padding: 0px
+      }
+  body
+    .header
+      .box
+        a.button.margin-r-10(href="/") Home
+        .button.blue.clear Clear map
+    #map-canvas
