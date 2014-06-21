@@ -3,6 +3,7 @@ config = require "../config"
 io = require "./sockets"
 app = require "./express"
 db = require "./db"
+send = require "./functions/send"
 
 Device = db.models.Device
 User = db.models.User
@@ -71,19 +72,17 @@ app.post "/gps", (req, res) ->
       lon: req.body.lon
       number: req.body.number
 
-  #io.sockets.in(req.body.number).emit("test", "data")
   console.log req.body
-  ###
-  console.log "Registering #{req.body.number}"
-  Device.findOne {gcmId: req.body.id}, (err, device) ->
+
+app.post "/panic", (req, res) ->
+  res.send 204
+  console.log req.body
+  Device.findOneAndUpdate {number: req.body.number}, {panic: true}, (err, device) ->
     console.log err if err?
-    return device if device
-    newDevice = new Device()
-    deviceData =
-      gcmId: req.body.id
-      number: req.body.number
-    newDevice.set deviceData
-    newDevice.save (err, data) ->
-      return console.log err if err?
-      console.log data
-  ###
+    console.log "Device called panic ", device
+  Device.find {key: req.body.key}, (err, devices) ->
+    devices.forEach (v, k) ->
+      return console.log "origin" if v.number is req.body.number
+      send v._id, "sos", (err, result) ->
+        console.log err if err?
+        console.log "Alerting:", result

@@ -10,6 +10,9 @@ Device = new Schema
     required: true
   key:
     type: String
+  panic:
+    type: Boolean
+    default: false
 
 
 Device.set "autoindex", false

@@ -3,7 +3,14 @@
     if items
     .items
       each item in items
-        .item
-          | #{item.number}
-          .button.red.panic(data-id="#{item._id}") Panic
-          a.button.green.gps(href="/map/#{item.number}##{item.number}" data-id="#{item._id}") GPS
+        if item.panic
+          .item.red
+            | #{item.number}
+            .button.red.panic(data-id="#{item._id}") Panic
+            a.button.green.gps(href="/map/#{item.number}##{item.number}" data-id="#{item._id}") GPS
+
+        else
+          .item
+            | #{item.number}
+            .button.red.panic(data-id="#{item._id}") Panic
+            a.button.green.gps(href="/map/#{item.number}##{item.number}" data-id="#{item._id}") GPS
