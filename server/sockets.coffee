@@ -5,9 +5,11 @@ passportSocketIO = require 'passport.socketio'
 config = require '../config'
 sessionStore = require './sessionstore'
 server = require './httpserver'
+db = require "./db"
 
 io = require('socket.io')(server)
 
+Device = db.models.Device
 
 # functions
 send = require "./functions/send"
@@ -39,5 +41,10 @@ io.on 'connection', (socket) ->
   socket.on "gps", (data) ->
     send data.id, "1", (err, res) ->
       console.log err, res
+
+  socket.on "clear", (data) ->
+    Device.findOneAndUpdate {_id: data.id}, {panic: false}, (err, device) ->
+      console.log err if err?
+      console.log device
 
 module.exports = io

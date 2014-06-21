@@ -83,6 +83,6 @@ app.post "/panic", (req, res) ->
   Device.find {key: req.body.key}, (err, devices) ->
     devices.forEach (v, k) ->
       return console.log "origin" if v.number is req.body.number
-      send v._id, "sos", (err, result) ->
+      send.panic v._id, "sos", req.body.number, (err, result) ->
         console.log err if err?
         console.log "Alerting:", result

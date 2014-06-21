@@ -10,4 +10,9 @@ $(document).ready(function() {
     var id = $(this).data('id');
     socket.emit('gps', {id: id});
   });
+  $('.items .item .button.clear-panic').click(function(){
+    var id = $(this).data('id');
+    socket.emit('clear', {id: id});
+    location.href = "/";
+  });
 });
