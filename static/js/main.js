@@ -13,6 +13,6 @@ $(document).ready(function() {
   $('.items .item .button.clear-panic').click(function(){
     var id = $(this).data('id');
     socket.emit('clear', {id: id});
-    location.href = "/";
+    $(this).parent().removeClass('red').find('.clear-panic').remove();
   });
 });
