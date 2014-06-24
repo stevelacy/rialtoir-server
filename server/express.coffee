@@ -24,6 +24,9 @@ app.use session
   store: sessionStore
   name: config.session.name
   secret: config.session.secret
+  cookie:
+  	expires: new Date Date.now() + 3600000
+  	maxAge: 3600000
 
 app.use passport.initialize()
 app.use passport.session()
