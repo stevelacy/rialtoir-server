@@ -6,9 +6,9 @@ var exec = require('child_process').exec;
 var options = {
   port:  6001,
   user:  'stevelacy',   // github username
-  repo:  'node-gcm-server',       // github reponame
+  repo:  'rialtoir-server',       // github reponame
   cwd:   path.resolve(__dirname, '..'),
-  start: 'pm2 restart 1',   // or node server.js, etc
+  start: 'pm2 restart 4',   // or node server.js, etc
   install: 'npm install'
 };
 
