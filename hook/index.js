@@ -4,7 +4,7 @@ var exec = require('child_process').exec;
 
 
 var options = {
-  port:  6001,
+  port:  6002,
   user:  'stevelacy',   // github username
   repo:  'rialtoir-server',       // github reponame
   cwd:   path.resolve(__dirname, '..'),
