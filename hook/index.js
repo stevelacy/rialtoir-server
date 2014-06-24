@@ -7,7 +7,7 @@ var options = {
   port:  6002,
   user:  'stevelacy',   // github username
   repo:  'rialtoir-server',       // github reponame
-  cwd:   path.resolve(__dirname, '..'),
+  cwd:   path.resolve(__dirname, '..'),  // git location
   start: 'pm2 restart 4',   // or node server.js, etc
   install: 'npm install'
 };

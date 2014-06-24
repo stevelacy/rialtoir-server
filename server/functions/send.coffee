@@ -35,4 +35,4 @@ module.exports.panic = (id, msg, panic, cb) ->
     registrationIds.push data.gcmId
 
     sender.send message, registrationIds, config.gcm.retries, (err, result) ->
-      cb err, result    
+      cb err, result
