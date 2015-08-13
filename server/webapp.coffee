@@ -63,19 +63,17 @@ app.post "/login", (req, res) ->
 ## Android GCM
 app.post "/gps", (req, res) ->
   res.send "data"
-  User.findOne {key: req.body.key}, (err, user) ->
-    return console.log err if err?
-    return console.log "no user" unless user?
-    io.sockets.in(user.id).emit "gps",
-      key: req.body.key
-      lat: req.body.lat
-      lon: req.body.lon
-      number: req.body.number
+  io.sockets.emit "gps",
+    key: req.body.key
+    lat: req.body.lat
+    lon: req.body.lon
+    number: req.body.number
 
   console.log req.body
 
 app.post "/panic", (req, res) ->
   res.send 204
+  ## this is disabled
   console.log req.body
   Device.findOneAndUpdate {number: req.body.number}, {panic: true}, (err, device) ->
     console.log err if err?
