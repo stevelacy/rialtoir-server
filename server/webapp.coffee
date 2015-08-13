@@ -37,15 +37,17 @@ app.get "/auth/twitter/callback",
 app.post "/gcm", (req, res) ->
   res.send 204
   console.log "Registering #{req.body.number}"
-  Device.findOne {gcmId: req.body.id}, (err, device) ->
+  Device.findOne {number: req.body.number}, (err, device) ->
     console.log err if err?
-    return device if device
-    newDevice = new Device()
-    deviceData =
+    if device?
+      device.set gcmId: req.body.id
+      return device.save (err, out) ->
+        console.log err, out
+
+    newDevice = new Device
       gcmId: req.body.id
       number: req.body.number
-      key: req.body.key
-    newDevice.set deviceData
+
     newDevice.save (err, data) ->
       return console.log err if err?
       console.log data
