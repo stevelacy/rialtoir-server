@@ -3,7 +3,8 @@ var webpack = require('webpack');
 
 module.exports = {
   debug: true,
-  devtool: 'inline-source-map',
+  devtool: 'eval',
+  cache: true,
   entry: './client',
   output: {
     path: __dirname + '/public',
