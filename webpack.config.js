@@ -5,7 +5,7 @@ module.exports = {
   debug: true,
   devtool: 'eval',
   cache: true,
-  entry: './client',
+  entry: './client/',
   output: {
     path: __dirname + '/public',
     filename: 'index.js',
@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        loader: 'stylus-loader'
+        loader: 'style-loader!css-loader!stylus-loader'
       }
     ]
   },

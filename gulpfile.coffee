@@ -21,7 +21,8 @@ tasks =
 
 gulp.task 'bundle', (cb) ->
   webpack webpackConfig, (err, stats) ->
-    cb err
+    console.error err if err?
+    cb()
 
 gulp.task 'sync', ->
   browserSync
