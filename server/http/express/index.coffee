@@ -3,7 +3,7 @@ session = require 'express-session'
 bodyParser = require 'body-parser'
 cookieParser = require 'cookie-parser'
 methodOverride = require 'method-override'
-config = require '../config'
+config = require '../../config'
 
 app = express()
 app.disable 'x-powered-by'
