@@ -11,6 +11,22 @@
     "node-gcm": "^0.12.0",
     "passport": "^0.3.0",
     "passport-facebook": "^2.0.0",
-    "require-dir": "^0.3.0"
+    "passport.socketio": "^3.6.1",
+    "require-dir": "^0.3.0",
+    "serve-static": "^1.10.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.11",
+    "coffee-loader": "^0.7.2",
+    "fission": "fissionjs/fission",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-nodemon": "^2.0.4",
+    "nib": "^1.1.0",
+    "react": "^0.12.2",
+    "stylus-loader": "^1.3.1",
+    "webpack": "^1.12.2"
+  },
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js"
   }
 }
