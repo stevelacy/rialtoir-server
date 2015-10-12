@@ -1,3 +1,4 @@
+var path = require('path');
 var nib = require('nib');
 var webpack = require('webpack');
 
@@ -41,7 +42,10 @@ module.exports = {
       '.coffee',
       '.js',
       '.styl'
-    ]
+    ],
+    alias: {
+      client: path.resolve(__dirname, 'client')
+    },
   },
   stylus: {
     use: [nib()]

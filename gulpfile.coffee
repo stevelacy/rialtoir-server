@@ -18,10 +18,12 @@ tasks =
     dest: paths.public
     watch: true
 
+packer = webpack webpackConfig
 
 gulp.task 'bundle', (cb) ->
-  webpack webpackConfig, (err, stats) ->
+  packer.watch aggregateTimeout: 300, (err, stats) ->
     console.error err if err?
+    browserSync.reload()
     cb()
 
 gulp.task 'sync', ->
@@ -55,7 +57,5 @@ for task of tasks
         .pipe browserSync.reload stream: true
     if tasks[task].watch
       gulp.watch tasks[task].src, gulp.parallel task
-
-gulp.watch "#{webpackConfig.entry}/**/*.coffee", gulp.series 'bundle', 'reload'
 
 gulp.task 'default', gulp.parallel names
