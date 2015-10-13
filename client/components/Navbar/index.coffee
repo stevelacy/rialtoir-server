@@ -5,4 +5,4 @@
 module.exports = component
   displayName: 'Navbar'
   render: ->
-    div null, 'navbar'
+    div null, 'Rialtoir'
