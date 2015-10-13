@@ -17,7 +17,6 @@ app.use staticFiles config.pubdir
   # res.send "window._config = #{JSON.stringify cfg};"
 
 app.get '/auth.js', (req, res, next) ->
-  console.log req.user
   createAuth req.user, (src) ->
     res.set 'Content-Type', 'application/javascript'
     res.status 200

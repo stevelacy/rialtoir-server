@@ -90,24 +90,13 @@ passport.use strategy
 passport.serializeUser userToString
 passport.deserializeUser stringToUser
 
-startEndpoint = passport.authenticate 'facebook',
-  display: 'touch'
-cbEndpoint = passport.authenticate 'facebook',
+app.get '/auth/facebook/callback', passport.authenticate 'facebook',
   display: 'touch'
   failureRedirect: '/login'
+  successRedirect: '/'
 
-app.get '/auth/facebook/callback', cbEndpoint, (req, res) ->
-  if req.session.redirectTo?
-    res.redirect req.session.redirectTo
-  else
-    res.redirect '/'
-
-app.get '/auth/facebook', (req, res, next) ->
-  return next() unless req.query?.to?
-  return next() unless req.query.to[0] is '/'
-  req.session.redirectTo = req.query.to
-  req.session.save next
-, startEndpoint
+app.get '/auth/facebook', passport.authenticate 'facebook',
+  display: 'touch'
 
 
 module.exports = passport
