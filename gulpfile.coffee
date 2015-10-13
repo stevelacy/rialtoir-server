@@ -1,9 +1,8 @@
 gulp = require 'gulp'
 webpack = require 'webpack'
 nodemon = require 'gulp-nodemon'
-browserSync = require 'browser-sync'
+reload = require 'gulp-livereload'
 webpackConfig = require './webpack.config'
-config = require './server/config'
 
 paths =
   public: __dirname + '/public'
@@ -23,17 +22,9 @@ packer = webpack webpackConfig
 gulp.task 'bundle', (cb) ->
   packer.watch aggregateTimeout: 300, (err, stats) ->
     console.error err if err?
-    browserSync.reload()
+    console.log 'bundle finished'
+    reload.reload()
     cb()
-
-gulp.task 'sync', ->
-  browserSync
-    proxy: "http://localhost:#{config.port}"
-    port: 9091
-    open: false
-
-gulp.task 'reload', (cb) ->
-  browserSync.reload cb
 
 gulp.task 'server', (cb) ->
   watcher = nodemon
@@ -43,9 +34,11 @@ gulp.task 'server', (cb) ->
 
   watcher.once 'start', cb
   watcher.on 'start', ->
-    setTimeout browserSync.reload, 1000
+    # TODO: make sure this is actually right
+    setTimeout reload.reload, 1000
+  return
 
-names = ['bundle', 'server', 'sync']
+names = ['bundle', 'server']
 
 for task of tasks
   do (task) ->
@@ -54,8 +47,9 @@ for task of tasks
       gulp
         .src tasks[task].src
         .pipe gulp.dest tasks[task].dest
-        .pipe browserSync.reload stream: true
+        .pipe reload()
     if tasks[task].watch
       gulp.watch tasks[task].src, gulp.parallel task
 
+reload.listen()
 gulp.task 'default', gulp.parallel names
