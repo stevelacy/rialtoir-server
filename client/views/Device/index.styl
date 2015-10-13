@@ -1,2 +1,22 @@
+@require '../../styles'
+
 .device-component
-  background: red
+  height: 100%
+  text-align: center
+  .gps, .panic
+    padding: 15px 20px
+    background: blue
+    display: inline-block
+    margin: 10px 5px
+    cursor: pointer
+    box-shadow: 0 1px 2px #000
+    color: #fff
+  .panic
+    background: red
+
+  .map
+    height: 100%
+    width: 100%
+    &.offline
+      opacity: .4
+

@@ -18,5 +18,5 @@ module.exports = collectionView
 
   render: ->
     div
-      className: 'device-component'
+      className: 'devices-component'
       @items
