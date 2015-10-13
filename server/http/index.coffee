@@ -10,8 +10,11 @@ app.get '/api/devices', routes.device.getAll
 app.get '/test', routes.test
 app.post '/register', routes.register
 app.post '/gps', routes.gps
+app.post '/panic', routes.panic
 
 
 spa = require './express/spa'
+sockets = require './sockets'
+httpServer = require './httpServer'
 
-module.exports = app
+module.exports = httpServer
