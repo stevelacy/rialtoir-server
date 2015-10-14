@@ -1,4 +1,4 @@
 me = require 'client/me'
 
 module.exports = (t) ->
-    return t.redirect '/' unless me?
+    return t.redirect '/login' unless me?
