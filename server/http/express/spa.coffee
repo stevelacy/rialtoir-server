@@ -5,8 +5,8 @@ config = require '../../config'
 createAuth = require './createAuth'
 idxFile = join config.pubdir, 'index.html'
 
-# if config.env is 'local' or config.env is 'test' or config.mode is 'static'
-app.use staticFiles config.pubdir
+if config.env is 'local' or config.env is 'test' or config.mode is 'static'
+  app.use staticFiles config.pubdir
 
 # app.get '/config.js', (req, res, next) ->
 #   return next() unless req.isAuthenticated()
