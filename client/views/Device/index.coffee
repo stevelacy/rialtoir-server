@@ -2,9 +2,11 @@
 io = require 'socket.io-client'
 auth = require 'client/lib/auth'
 Model = require 'client/models/Device'
+Navbar = require 'client/components/Navbar'
+parser = require 'phone-parser'
 css = require './index.styl'
 
-{div} = DOM
+{div, i} = DOM
 
 module.exports = modelView
   displayName: 'Application'
@@ -17,6 +19,8 @@ module.exports = modelView
     map: false
     markers: []
     first: true
+    gps: false
+    panic: false
 
   mounted: ->
     return unless @isMounted()
@@ -48,22 +52,27 @@ module.exports = modelView
 
   handleGps: ->
     window.socket.emit 'gps', device: @model._id
+    @setState gps: true
 
   handlePanic: ->
     window.socket.emit 'panic', device: @model._id
+    @setState panic: true
 
   render: ->
     div
       className: 'device-component'
-      div className: 'header', @model?.number
+      Navbar title: if @model? then parser @model.number, '(xxx) xxx-xxxx'
+
       div
-        className: 'button gps'
+        className: classes 'button gps', active: @state.gps
         onClick: @handleGps
-        'GPS'
+        # 'GPS'
+        i className: 'fa fa-map-marker'
       div
-        className: 'button panic'
+        className: classes 'button panic', active: @state.panic
         onClick: @handlePanic
-        'PANIC'
+        # 'PANIC'
+        i className: 'fa fa-exclamation-triangle'
 
       div
         className: classes 'map', offline: not @state.map

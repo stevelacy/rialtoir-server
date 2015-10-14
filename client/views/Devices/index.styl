@@ -1,2 +1,19 @@
+@require 'nib'
+
 .devices-component
   height: 100%
+  width: 100%
+  background: rgba(50, 50, 50, .3)
+  .devices
+    absolute: top 50%
+    max-width: 500px
+    width: 100%
+    display: inline-block
+    transform: translateX(-50%)
+    .device-item-component
+      padding: 20px
+      width: 100%
+      display: inline-block
+      font-size: 35px
+      &:hover
+        background: rgba(231,76,60, .2)

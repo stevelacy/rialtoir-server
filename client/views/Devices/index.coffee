@@ -2,6 +2,7 @@
 io = require 'socket.io-client'
 auth = require 'client/lib/auth'
 ItemView = require './ItemView'
+Navbar = require 'client/components/Navbar'
 Model = require 'client/models/Device'
 css = require './index.styl'
 
@@ -19,4 +20,6 @@ module.exports = collectionView
   render: ->
     div
       className: 'devices-component'
-      @items
+      Navbar  title: 'Devices'
+      div className: 'devices',
+        @items

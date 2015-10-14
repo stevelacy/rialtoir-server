@@ -10,6 +10,7 @@ module.exports = view
   render: ->
     div
       className: 'login-component'
+      div className: 'header', 'Rialtoir'
       a
         className: 'button facebook'
         href: '/auth/facebook'

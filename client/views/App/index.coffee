@@ -1,6 +1,5 @@
 {view, classes, DOM, ChildView} = require 'fission'
 css = require './index.styl'
-Navbar = require 'client/components/Navbar'
 
 {div} = DOM
 
@@ -10,5 +9,4 @@ module.exports = view
   render: ->
     div
       className: 'application-component'
-      Navbar()
       ChildView()

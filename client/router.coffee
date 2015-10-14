@@ -8,6 +8,8 @@ module.exports = router
   app:
     view: App
     path: '/'
+    defaultChild:
+      view: Devices
     children:
       login:
         view: Login
