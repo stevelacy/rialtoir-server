@@ -7,4 +7,5 @@ configWithEnv = require "./#{env}"
 configDefault = require './default'
 
 conf = merge configDefault, configWithEnv
+conf.env = env
 module.exports = conf
