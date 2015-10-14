@@ -1,0 +1,33 @@
+@require '../../styles'
+
+.device-component
+  height: 100%
+  text-align: center
+  .gps, .panic
+    display: inline-block
+    margin: 2%
+    cursor: pointer
+    box-shadow: 0 1px 5px #000
+    color: #fff
+    font-size: 50px
+    height: 100px
+    width: 100px
+    line-height: 90px
+    border-radius: 50%
+    border: 5px solid gblue
+    background: rgba(0, 134, 139, .3)
+    &.active
+      background: rgba(0, 134, 139, .8)
+
+  .panic
+    background: rgba(231, 76, 60, .3)
+    border: 5px solid red
+    &.active
+      background: rgba(231, 76, 60, .8)
+
+  .map
+    height: calc(100% - 250px)
+    width: 100%
+    &.offline
+      opacity: .4
+

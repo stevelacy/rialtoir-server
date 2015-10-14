@@ -1,6 +1,7 @@
-config = require "../config"
-require "./webapp"
-require "./sockets"
-server = require "./httpserver"
+config = require './config'
+http = require './http'
 
-server.listen config.port
+http.listen config.port
+console.log 'starting on port:', config.port
+
+module.exports = http
